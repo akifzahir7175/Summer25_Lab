@@ -1,13 +1,13 @@
 #include <stdio.h>
 
 char arr[5][10];
+void innitialize();
 int display_seats();
 int buy_ticket();
 int ticket_summary();
 int cancel_seat();
 int main() {
     int input;
-    
     for (int i = 0; i < 5;i++){
         for (int j = 0; j < 10;j++){
             arr[i][j] = 'O';
@@ -15,16 +15,7 @@ int main() {
     } 
 
 while (1){
-    printf("____________Welcome to Theater of your life_____________\n");
-    printf("                  -----Because regrets look better in HD\n\n");
-    printf("1.Display Seats\n");
-    printf("2.Buy Seats\n");
-    printf("3.Cancel Seat\n");
-    printf("4.Seats Summary\n");
-    printf("5.Exit\n");
-    printf("Enter your Choice: ");
-
-
+    innitialize();
     scanf("%d", &input);
     if (input == 1){
         display_seats();
@@ -54,7 +45,16 @@ while (1){
    return 0;
 }
 
-
+void innitialize(){
+    printf("____________Welcome to Theater of your life_____________\n");
+    printf("                  -----Because regrets look better in HD\n\n");
+    printf("1.Display Seats\n");
+    printf("2.Buy Seats\n");
+    printf("3.Cancel Seat\n");
+    printf("4.Seats Summary\n");
+    printf("5.Exit\n");
+    printf("Enter your Choice: ");
+}
 
 int display_seats(){
     for (int i = 0; i < 5;i++){
