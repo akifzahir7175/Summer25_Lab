@@ -167,7 +167,7 @@ void menu() {
     printf("2. Buy Seats\n");
     printf("3. Cancel Seat\n");
     printf("4. Seats Summary\n");
-    printf("0. Go To Movie slot\n");
+    printf("0. Go To Movie Time slot\n");
     printf("Enter your Choice: ");
 }
 
