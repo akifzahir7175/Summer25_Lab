@@ -13,7 +13,7 @@ void buy_ticket(int p, int q);
 void cancel_seat(int p, int q);
 void ticket_summary(int p, int q);
 void welcome();
-void interface();
+void menu();
 void movie_name(int a);
 void show_time(int a);
 
@@ -54,36 +54,37 @@ int main() {
     return 0;
 }
 
-// Show Interface
-void show_interface(int a, int b) {
-    int input;
-    while (1) {
-        movie_name(a);
-        show_time(b);
-
-        interface();
-        scanf("%d", &input);
-
-        if (input == 1) {
-            display_seats(a, b);
-        }
-        else if (input == 2) {
-            buy_ticket(a, b);
-        }  
-        else if (input == 3) {
-            cancel_seat(a, b);
-        }
-        else if (input == 4) {
-            ticket_summary(a, b);
-        }
-        else if (input == 0) {
-            printf("Back to time slot menu.\n");
-            break;
-        }
-        else {
-            printf("Invalid choice.\n");
+// Initialize Seats
+void initialize() {
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 5; k++) {
+                for (int l = 0; l < 10; l++) {
+                    arr[i][j][k][l] = 'O';
+                }
+            }
         }
     }
+}
+
+// Welcome Banner
+void welcome() {
+    printf("____________Welcome to Daffodil Cineplex_____________\n");
+    printf("                        -----Bringing stories of life\n\n\n");
+}
+
+// Movie Selection
+int select_movie() {
+    int m;
+    printf("Now Showing: \n\n");
+    printf("1. Aynabaji\n");
+    printf("2. Utsob\n");
+    printf("3. Borbaad\n");
+    printf("4. Tandob\n\n");
+    printf("0. Exit the Program \n\n");
+    printf("Please Select a movie: ");
+    scanf("%d", &m);
+    return m;
 }
 
 // Movie Names
@@ -100,20 +101,6 @@ void movie_name(int a) {
     else if (a == 4) {
         printf("Tandob >\n");
     }
-}
-
-// Movie Selection
-int select_movie() {
-    int m;
-    printf("Now Showing: \n\n");
-    printf("1. Aynabaji\n");
-    printf("2. Utsob\n");
-    printf("3. Borbaad\n");
-    printf("4. Tandob\n\n");
-    printf("0. Exit the Program \n\n");
-    printf("Please Select a movie: ");
-    scanf("%d", &m);
-    return m;
 }
 
 // Time Slot Selection
@@ -142,27 +129,40 @@ void show_time(int a) {
     }
 }
 
-// Welcome Banner
-void welcome() {
-    printf("____________Welcome to Daffodil Cineplex_____________\n");
-    printf("                        -----Bringing stories of life\n\n\n");
-}
+// Show Interface
+void show_interface(int a, int b) {
+    int input;
+    while (1) {
+        movie_name(a);
+        show_time(b);
 
-// Initialize Seats
-void initialize() {
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 3; j++) {
-            for (int k = 0; k < 5; k++) {
-                for (int l = 0; l < 10; l++) {
-                    arr[i][j][k][l] = 'O';
-                }
-            }
+        menu();
+        scanf("%d", &input);
+
+        if (input == 1) {
+            display_seats(a, b);
+        }
+        else if (input == 2) {
+            buy_ticket(a, b);
+        }  
+        else if (input == 3) {
+            cancel_seat(a, b);
+        }
+        else if (input == 4) {
+            ticket_summary(a, b);
+        }
+        else if (input == 0) {
+            printf("Back to time slot menu.\n");
+            break;
+        }
+        else {
+            printf("Invalid choice.\n");
         }
     }
 }
 
 // Menu Interface
-void interface() {
+void menu() {
     printf("\n1. Display Seats\n");
     printf("2. Buy Seats\n");
     printf("3. Cancel Seat\n");
